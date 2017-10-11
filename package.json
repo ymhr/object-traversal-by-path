@@ -1,0 +1,39 @@
+{
+  "name": "object-traversal-by-path",
+  "version": "1.0.0",
+  "description": "Simple object navigation",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymhr/object-traversal-by-path.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ymhr/object-traversal-by-path/issues"
+  },
+  "homepage": "https://github.com/ymhr/object-traversal-by-path#readme",
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.spec.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "transform": {
+      ".*\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "mapCoverage": true
+  },
+  "_moduleAliases": {
+    "@": "./src",
+    "__data__": "./data"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}
