@@ -1,5 +1,6 @@
 # Object traversal by path
 [![Build Status](https://travis-ci.org/ymhr/object-traversal-by-path.svg?branch=master)](https://travis-ci.org/ymhr/object-traversal-by-path)
+
 Given a path, e.g. `a.b[2].c.d[1].e`, it will navigate down the provided object and return the last value it finds.
 
 ## Install
