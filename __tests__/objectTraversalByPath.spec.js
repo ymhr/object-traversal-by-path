@@ -112,6 +112,24 @@ describe('objectTraversalByPath', () =>
 
 			expect(newObject.a.b).toEqual({ d: { e: 'new object' } });
 		});
+
+		it('should be able to replace the value for a 1 level-deep path', () => {
+			const path = 'a';
+			const objectToBeTraversed = {
+				a: {
+					b: [
+						{ c: 'one' },
+						{ c: 'two' }
+					]
+				}
+			};
+			const callback = (originalValue) => {
+				return 'test';
+			};
+			const newObject = mutate(path, objectToBeTraversed, callback);
+
+			expect(newObject.a).toEqual('test');
+		});
 	});
 
 });

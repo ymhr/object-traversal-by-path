@@ -34,13 +34,17 @@ const mutate = (pathString, objectToTraverse, callback) => {
 
 	let lastHit = objectCopy;
 
+	if(path.length === 1) {
+		objectCopy[path[0]] = newValue;
+		return objectCopy;
+	}
+
 	path.forEach((p, index) => {
 		if(index === path.length - 1) return;
-		
+
 		if(lastHit[p]) {
 			lastHit = lastHit[p];
-
-			if(index === path.length - 2){
+			if(index === path.length - 2) {
 				if(lastHit[path[index + 1]]) {
 					lastHit[path[index + 1]] = newValue;
 				}
