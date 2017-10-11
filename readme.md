@@ -39,3 +39,25 @@ const path = 'a.b[1].c';
 
 const value = traverse(path, object); // value === 'goodbye'
 ```
+
+## Mutating
+You can deeply mutate objects with the `mutate` function.
+
+```javascript
+import { mutate } from 'object-traversal-by-path';
+
+const object = {
+    a: {
+        b: [
+            { c: 'hello' },
+            { c: 'goodbye' }
+        ]
+    }
+};
+const path = 'a.b[1].c';
+
+const value = mutate(path, object, () => 'see you soon!'); 
+
+console.log(value.a.b[1].c); // 'see you soon!'
+
+```
