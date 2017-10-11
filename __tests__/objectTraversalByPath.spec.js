@@ -1,6 +1,6 @@
 const { traverse, splitPathIntoParts } = require('../index.js');
 
-describe('utils/objectTraversalByPath', () =>
+describe('objectTraversalByPath', () =>
 {
 	describe('analysing the path', () =>
 	{
