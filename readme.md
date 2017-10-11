@@ -5,7 +5,7 @@ Given a path, e.g. `a.b[2].c.d[1].e`, it will navigate down the provided object 
 
 ## Install
 `npm install object-traversal-by-path` or
-`yarn install object-traversal-by-path`
+`yarn add object-traversal-by-path`
 
 ## Usage
 ```javascript
