@@ -1,4 +1,4 @@
-const { traverse, splitPathIntoParts } = require('../index.js');
+const { traverse, mutate, splitPathIntoParts } = require('../index.js');
 
 describe('objectTraversalByPath', () =>
 {
@@ -56,6 +56,62 @@ describe('objectTraversalByPath', () =>
 			expect(traverse(path, { a: 'test' })).toBe('test');
 		});
 
+	});
+
+	describe('mutating', () =>
+	{
+		it('should be able to change a specific value based on a callback', () =>
+		{
+			const path = 'a.b';
+			const objectToBeTraversed = {
+				a: {
+					b: 'hello'
+				}
+			};
+			const callback = (originalValue) => {
+				return 'test';
+			};
+			const newObject = mutate(path, objectToBeTraversed, callback);
+
+			expect(newObject.a.b).toEqual('test');
+		});
+
+		it('should be able to change a specific array value based on a callback', () =>
+		{
+			const path = 'a.b[1].c';
+			const objectToBeTraversed = {
+				a: {
+					b: [
+						{ c: 'one' },
+						{ c: 'two' }
+					]
+				}
+			};
+			const callback = (originalValue) => {
+				return 'test';
+			};
+			const newObject = mutate(path, objectToBeTraversed, callback);
+
+			expect(newObject.a.b[1].c).toEqual('test');
+		});
+
+		it('should be able to completely replace parts of an object', () =>{
+			const path = 'a.b';
+			const objectToBeTraversed = {
+				a: {
+					b: [
+						{ c: 'one' },
+						{ c: 'two' }
+					]
+				}
+			};
+			const callback = (originalValue) => {
+				return { d: { e: 'new object' } };
+			};
+			const newObject = mutate(path, objectToBeTraversed, callback);
+
+			expect(newObject.a.b).toEqual({ d: { e: 'new object' } });
+		});
 	});
 
 });

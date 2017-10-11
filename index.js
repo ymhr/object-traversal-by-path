@@ -9,11 +9,11 @@ const traverse = (pathString, objectToTraverse) => {
 	let value = undefined;
 
 	path.forEach((p, index) => {
-		let t = lastHit[p];
+		let val = lastHit[p];
 
-		if(typeof t !== undefined)
+		if(typeof val !== undefined)
 		{
-			lastHit = t;
+			lastHit = val;
 		}
 
 		if(index === path.length - 1)
@@ -23,7 +23,32 @@ const traverse = (pathString, objectToTraverse) => {
 	});
 
 	return value;
+};
 
+const mutate = (pathString, objectToTraverse, callback) => {
+	const path = splitPathIntoParts(pathString);
+	const oldValue = traverse(pathString, objectToTraverse);
+	const newValue = callback(oldValue);
+
+	const objectCopy = { ...objectToTraverse };
+
+	let lastHit = objectCopy;
+
+	path.forEach((p, index) => {
+		if(index === path.length - 1) return;
+		
+		if(lastHit[p]) {
+			lastHit = lastHit[p];
+
+			if(index === path.length - 2){
+				if(lastHit[path[index + 1]]) {
+					lastHit[path[index + 1]] = newValue;
+				}
+			}	
+		}
+	});
+	
+	return objectCopy;
 };
 
 const splitStringByDots = string => string.split('.');
@@ -60,4 +85,4 @@ const splitPathIntoParts = (path) => {
 	return breakApartArrays(splitStringByDots(path));
 };
 
-module.exports = { traverse, splitPathIntoParts };
+module.exports = { traverse, mutate, splitPathIntoParts };
