@@ -30,7 +30,7 @@ const mutate = (pathString, objectToTraverse, callback) => {
 	const oldValue = traverse(pathString, objectToTraverse);
 	const newValue = callback(oldValue);
 
-	const objectCopy = { ...objectToTraverse };
+	const objectCopy = Object.assign({}, objectToTraverse);
 
 	let lastHit = objectCopy;
 
