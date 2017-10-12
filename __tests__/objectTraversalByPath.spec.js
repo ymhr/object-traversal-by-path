@@ -56,6 +56,26 @@ describe('objectTraversalByPath', () =>
 			expect(traverse(path, { a: 'test' })).toBe('test');
 		});
 
+		it('should return undefined if the property does not exist', () =>{
+			const path = 'a.b';
+			const objectToBeTraversed = {
+				a: {
+					c: 'test'
+				}
+			}
+			expect(traverse(path, objectToBeTraversed)).toBe(undefined);
+		});
+
+		it('should return undefined if the property does not exist deeply nested', () =>{
+			const path = 'a.b.c.d';
+			const objectToBeTraversed = {
+				a: {
+					c: 'test'
+				}
+			}
+			expect(traverse(path, objectToBeTraversed)).toBe(undefined);
+		});
+
 	});
 
 	describe('mutating', () =>

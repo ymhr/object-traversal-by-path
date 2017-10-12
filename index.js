@@ -9,11 +9,20 @@ const traverse = (pathString, objectToTraverse) => {
 	let value = undefined;
 
 	path.forEach((p, index) => {
-		let val = lastHit[p];
+		let val;
+		try {
+			val = lastHit[p];
+		} catch (e) {
+			return undefined;
+		}
 
 		if(typeof val !== undefined)
 		{
 			lastHit = val;
+		}
+		else
+		{
+			return undefined;
 		}
 
 		if(index === path.length - 1)
