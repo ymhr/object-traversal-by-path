@@ -34,7 +34,7 @@
     "__data__": "./data"
   },
   "devDependencies": {
-    "jest": "^21.2.1"
+    "jest": "^24.8.0"
   },
   "dependencies": {}
 }
